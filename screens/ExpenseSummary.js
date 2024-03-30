@@ -15,6 +15,8 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import LottieView from 'lottie-react-native'
 import { Dimensions } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const { width, height } = Dimensions.get('window');
 
 
@@ -29,8 +31,8 @@ export default function ExpenseSummary(props) {
     const [accomodationExpenses, setAccomodationExpenses] = useState(0);
     const [miscellaneousExpenses, setMiscellaneousExpenses] = useState(0);
     const [entertainmentExpenses, setEntertainmentExpenses] = useState(0);
-    
-   
+
+
     const fetchExpenses = async () => {
         // fetch expenses from firestore
         const q = query(expensesRef, where('tripId', '==', id));
@@ -62,64 +64,87 @@ export default function ExpenseSummary(props) {
     useEffect(() => {
         fetchExpenses();
     }, []);
-       
+
     return (
-        <ScreenWrapper className="flex-1">
-            <View className="flex px-4 bg-green-900 py-4 rounded-b-[15]">
+        <ScreenWrapper style={{ height: height }} className="flex-1">
+            <View style={{ height: height * 0.17 }} className="flex px-4 bg-green-900 py-3 rounded-b-[15]">
                 <View className="flex-3 flex-row items-center justify-between  ">
                     <View className="relative top-0 left-0 mx-2" >
                         <BackButton />
                     </View>
                     <View className="mr-10 mt-2">
                         <Text className="text-white text-2xl font-bold text-center">{place}</Text>
-                    
+
                     </View>
                     <View>
 
                     </View>
 
                 </View>
-                <View className="flex-row justify-between mt-5 bg-lime-300 py-2 px-3 rounded-xl">
-                    <Text className="text-green-950 font-bold text-xl">Total Expenses</Text>
-                    <Text className="text-green-900 font-bold text-xl">₹ {totalExpenses}</Text>
+                <View className="flex-row justify-between mt-5 bg-white py-1 px-3 rounded-xl">
+                    <Text className="text-green-950 font-bold text-lg">Total Expenses</Text>
+                    <Text className="text-green-900 font-bold text-lg">₹ {totalExpenses}</Text>
                 </View>
 
             </View>
 
-            <View className="flex-row justify-center align-center bg-white-200    rounded-xl ">
-                <Image source={require('../assets/images/expense.png')} className="w-80 h-60 " />
+            <View style={{ height: height * 0.20 }} className="flex-row justify-center align-center bg-white-200    rounded-xl ">
+                <Image source={require('../assets/images/expense.png')} className="w-60 h-40 " />
             </View>
-            <View className=" space-y-2 ">
+            <View style={{ height: height * 0.05 }} className=" space-y-2 ">
                 <View className="px-4 flex-row justify-around items-center ">
                     <Text className="text-green-900 font-bold text-2xl">Expense Summary</Text>
-                    
+
                 </View>
-                <View style={{height: height/2}}className="bg-green-800 p-5 rounded-t-[30]">
-                    <View  className="flex-row  justify-between bg-white px-4 py-2 my-2 rounded-full">
+                <View style={{ height: height * 0.60 }} className="bg-green-800 p-5 rounded-t-[30]">
+                    <View className="flex-row  justify-between bg-white px-4 py-2 my-2 rounded-full">
                         <Text className="text-green-900 font-bold text-xl">No of Expenses</Text>
+
                         <Text className="text-green-900 font-bold text-xl">{expenses.length}</Text>
                     </View>
                     <View className="flex-row  justify-between bg-white px-4 py-2 my-2 rounded-full">
-                        <Text className="text-red-900 font-bold text-xl">Food 🍰</Text>
-                        <Text className="text-red-900 font-bold text-xl">₹ {foodExpenses}</Text>
-                    </View>
-                    <View className="flex-row  justify-between bg-white px-4 py-2 my-2 rounded-full">
-                        <Text className="text-yellow-500 font-bold text-xl">Transportation 🚌</Text>
-                        <Text className="text-yellow-500 font-bold text-xl">₹ {transportationExpenses}</Text>
+                        <View className="flex-row  items-center">
+                            <View className="w-8"><FontAwesome5 name="utensils" size={20} color="black" /></View>
+                            <Text className="text-green-900 font-bold text-xl ml-2">Food </Text>
                         </View>
-                    <View className="flex-row  justify-between bg-white px-4 py-2 my-2 rounded-full">
-                        <Text className="text-blue-900 font-bold text-xl">Accomodation 🏠</Text>
-                        <Text className="text-blue-900 font-bold text-xl">₹ {accomodationExpenses}</Text>
+
+
+                        <Text className="text-green-900 font-bold text-xl">₹ {foodExpenses}</Text>
                     </View>
                     <View className="flex-row  justify-between bg-white px-4 py-2 my-2 rounded-full">
-                        <Text className="text-emerald-900 font-bold text-xl">Entertainment 🍿</Text>
-                        <Text className="text-emerald-900 font-bold text-xl">₹ {entertainmentExpenses}</Text>
+                        <View className="flex-row  items-center">
+                            <View className="w-8"><FontAwesome5 name="car-side" size={20} color="black" /></View>
+                          
+                            <Text className="text-green-900 font-bold text-xl ml-2">Transportation </Text>
+                        </View>
+                        <Text className="text-green-900 font-bold text-xl">₹ {transportationExpenses}</Text>
                     </View>
                     <View className="flex-row  justify-between bg-white px-4 py-2 my-2 rounded-full">
-                        <Text className="text-slate-900 font-bold text-xl">Miscellaneous</Text>
-                        <Text className="text-slate-900 font-bold text-xl">₹ {miscellaneousExpenses}</Text>
+                        <View className="flex-row  items-center">
+                            <View className="w-8">
+                                <FontAwesome5 name="hotel" size={20} color="black" />
+                            </View>
+                            <Text className="text-green-900 font-bold text-xl ml-2">Accomodation</Text>
+                        </View>
+                        <Text className="text-green-900 font-bold text-xl">₹ {accomodationExpenses}</Text>
                     </View>
-                    
+                    <View className="flex-row  justify-between bg-white px-4 py-2 my-2 rounded-full">
+                        <View className="flex-row  items-center">
+                            <View className="w-8"><FontAwesome5 name="headphones" size={20} color="black" /></View>
+
+                            <Text className="text-green-900 font-bold text-xl ml-2">Entertainment </Text>
+                        </View>
+                        <Text className="text-green-900 font-bold text-xl">₹ {entertainmentExpenses}</Text>
+                    </View>
+                    <View className="flex-row  justify-between bg-white px-4 py-2 my-2 rounded-full">
+                        <View className="flex-row  items-center">
+                            <View className="w-8"><FontAwesome5 name="dice-four" size={20} color="black" /></View>
+
+                            <Text className="text-green-900 font-bold text-xl ml-2">Miscellaneous </Text>
+                        </View>
+                        <Text className="text-green-900 font-bold text-xl">₹ {miscellaneousExpenses}</Text>
+                    </View>
+
                 </View>
 
 

@@ -47,9 +47,9 @@ export default function SigninScreen() {
   }
   return (
     <KeyboardAwareScrollView>
-      <View className="flex justify-between h-full ">
-        <View>
-          <View className="flex-3 flex-row items-center justify-between py-6 px-5 bg-green-900 rounded-br-[50]">
+      <View style={{height: height}} className="flex justify-between">
+       
+          <View style={{height:height*0.13}} className="flex-3 flex-row items-center justify-between py-6 px-5 bg-green-900 rounded-br-[50]">
             <View className=" top-0 left-0" >
               <BackButton />
             </View>
@@ -58,36 +58,36 @@ export default function SigninScreen() {
 
             </View>
           </View>
-          <View className="flex-row justify-center my-3 mt-3" >
-            <Image source={require('../assets/images/login.png')} className="w-80 h-80" />
+          <View style={{height:height*0.35}} className="flex-row justify-center " >
+            <Image style={{ height: height*0.4 , width:width}}source={require('../assets/images/login.png')} />
           </View>
           <View>
 
           </View>
-          <View style={{ height: height - 425 }} className="bg-green-800 rounded-tl-[40]">
-            <View className="space-y-3 mx-6 mt-7">
+          <View style={{ height: height*0.60}} className="bg-green-800 rounded-tl-[40]">
+            <View className="space-y-2 mx-6 mt-7">
               <Text className="text-white   text-xl font-bold" >Email</Text>
-              <TextInput value={email} onChangeText={value => setEmail(value)} className="border border-green-600 rounded-2xl p-2 px-5 bg-white text-slate-800 text-xl" />
+              <TextInput value={email} placeholder='Enter email' placeholderTextColor={"gray"} onChangeText={value => setEmail(value)} className="border border-green-600 rounded-2xl p-2 px-5 bg-white text-slate-800 text-xl" />
               <Text className="text-white   text-xl font-bold"> Password </Text>
-              <View className="flex-row justify-center items-center"><TextInput style={{ width: width - 110, marginLeft: 20 }} value={password} secureTextEntry={!showPassword} onChangeText={value => setPassword(value)} className="border border-gray-400 rounded-2xl p-2 px-5 bg-white text-slate-800" />
+              <View className="flex-row justify-center items-center"><TextInput style={{ width: width - 110, marginLeft: 20 }} placeholder='Enter password'  placeholderTextColor={"gray"} value={password} secureTextEntry={!showPassword} onChangeText={value => setPassword(value)} className="border border-gray-400 rounded-2xl p-2 px-5 text-xl bg-white text-slate-800" />
                 <TouchableOpacity className="mx-4 bg-white rounded-xl p-2" onPress={toggleShowPassword}>{showPassword ? <EyeSlashIcon size="30" color="black" /> : <EyeIcon size="30" color="black" />}</TouchableOpacity></View>
 
-            <TouchableOpacity className="flex-row justify-end ">
-              <Text className="text-white  text-sm font-bold text-right">Forgot Password?</Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            {
-              userLoading ? (
-                < Loading />
-              ) : (<TouchableOpacity onPress={handleSubmit} className="bg-green-400 shadow-sm  p-4 rounded-full mx-6 my-5">
-                <Text className="text-slate-900 text-center font-bold text-2xl">Sign In</Text>
-              </TouchableOpacity>)
-            }
+              <TouchableOpacity className="flex-row justify-end ">
+                <Text className="text-white  text-sm font-bold text-right">Forgot Password?</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{marginBottom:height*0.15}}>
+              {
+                userLoading ? (
+                  < Loading />
+                ) : (<TouchableOpacity onPress={handleSubmit} className="bg-green-400 shadow-sm  p-4 rounded-full mx-6 my-5">
+                  <Text className="text-slate-900 text-center font-bold text-2xl">Sign In</Text>
+                </TouchableOpacity>)
+              }
 
+            </View>
           </View>
-        </View>
-</View>
+        
       </View>
 
 

@@ -9,10 +9,12 @@ import Snackbar from 'react-native-snackbar'
 import { tripsRef } from '../config/firebase.js'
 import { useSelector } from 'react-redux'
 import { addDoc } from 'firebase/firestore'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 export default function AddTripScreen() {
 
   const [place, setPlace] =useState('');
   const [country, setCountry] =useState('');
+  const [budget, setBudget] =useState('');
   const [loading, setLoading] = useState(false);
   const {user} = useSelector(state => state.user);
 const navigation = useNavigation();
@@ -23,6 +25,7 @@ const navigation = useNavigation();
           let doc = await addDoc(tripsRef, {
               place,
               country,
+              budget,
               userId: user.uid,
           });
           setLoading(false);
@@ -38,7 +41,7 @@ const navigation = useNavigation();
       }
 
   return (
-    <ScreenWrapper>
+    <KeyboardAwareScrollView>
       <View className="flex justify-between h-full mx-4">
         <View>
           <View className="flex-3 flex-row items-center justify-between mt-4 ">
@@ -54,10 +57,12 @@ const navigation = useNavigation();
             <Image source={require('../assets/images/4.png')} className="w-60 h-60 " />
           </View>
           <View className="space-y-3 mx-2">
-            <Text className="text-slate-500   text-xl font-bold" >Where on Earth?</Text>
+            <Text className="text-green-900   text-xl font-bold" >Where on Earth?</Text>
             <TextInput value={place} onChangeText={value=>setPlace(value)} placeholder="Enter the place" placeholderTextColor={"gray"} className="border border-gray-400 rounded-full p-2 px-5 bg-white text-slate-800" />
-            <Text className="text-slate-500   text-xl font-bold"> Which Country? </Text>
+            <Text className="text-green-900   text-xl font-bold"> Which Country? </Text>
             <TextInput value={country} onChangeText={value=>setCountry(value)} placeholder="Enter the country" placeholderTextColor={"gray"} className="border border-gray-400 rounded-full p-2 px-5 bg-white text-slate-800" />
+            <Text className="text-green-900   text-xl font-bold" >Estimated Budget </Text>
+            <TextInput value={budget} onChangeText={value=>setBudget(value)} placeholder="Enter amount in INR (Not Nessesary)" placeholderTextColor={"gray"} className="border border-gray-400 rounded-full p-2 px-5 bg-white text-slate-800" />
           </View>
         </View>
 
@@ -75,6 +80,6 @@ const navigation = useNavigation();
              
         </View>
       </View>
-    </ScreenWrapper>
+    </KeyboardAwareScrollView>
   )
 }

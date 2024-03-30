@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { Screen } from 'react-native-screens'
 import ScreenWrapper from '../components/ScreenWrapper'
@@ -48,7 +48,7 @@ let {id} =props.route.params || {};
   }
 
   return (
-    <ScreenWrapper>
+    <ScrollView>
       <View className="flex justify-between h-full mx-4">
         <View>
           <View className="flex-3 flex-row items-center justify-between mt-4  ">
@@ -59,7 +59,7 @@ let {id} =props.route.params || {};
             <View></View>
           </View>
           <View className="flex-row justify-center my-3 mt-3">
-            <Image source={require('../assets/images/expenseBanner.png')} className="w-60 h-60 " />
+            <Image source={require('../assets/images/expenseBanner.png')} className="w-40 h-40 " />
           </View>
           <View className="space-y-2 mx-2">
             <Text className="text-slate-500   text-xl font-bold" >Expense Description </Text>
@@ -67,7 +67,6 @@ let {id} =props.route.params || {};
 
             <Text className="text-slate-500   text-xl font-bold"> Amount </Text>
             <TextInput value={amount} placeholder='Enter the amount in ₹' onChangeText={value => setAmount(value)} className="border border-gray-400 rounded-full p-2 px-5 bg-white text-slate-800" />
-
           </View>
           <View className="mx-2 space-y-2 mt-2">
             <Text className="text-slate-500   text-xl font-bold"> Category </Text>
@@ -102,6 +101,6 @@ let {id} =props.route.params || {};
 
         </View>
       </View>
-    </ScreenWrapper>
+    </ScrollView>
   )
 }

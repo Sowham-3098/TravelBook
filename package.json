@@ -1,6 +1,6 @@
 {
   "name": "TravelBook",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-google-signin/google-signin": "^11.0.0",
     "@react-navigation/native": "^6.1.16",
     "@react-navigation/native-stack": "^6.9.25",
@@ -29,6 +30,7 @@
     "react-native-screens": "^3.29.0",
     "react-native-snackbar": "^2.6.2",
     "react-native-svg": "^15.1.0",
+    "react-native-vector-icons": "^10.0.3",
     "react-redux": "^9.1.0"
   },
   "devDependencies": {
