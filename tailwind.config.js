@@ -16,7 +16,8 @@ module.exports = {
 "./screens/SignupScreen.js",
 "./screens/SigninScreen.js",
 "./components/loading.js",
-"./screens/ExpenseSummary.js",],
+"./screens/ExpenseSummary.js",
+"./screens/EditExpense.js",],
  
   theme: {
     extend: {},

@@ -9,6 +9,7 @@ import TripExpense from '../screens/TripExpense';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import SignupScreen from '../screens/SignupScreen';
 import SigninScreen from '../screens/SigninScreen';
+import EditExpense from '../screens/EditExpense';
 import { store } from '../redux/store';
 import {user} from '../redux/slices/user'
 import { onAuthStateChanged } from 'firebase/auth';
@@ -37,6 +38,7 @@ export default function AppNavigation() {
           <Stack.Screen name="AddTrip" component={AddTripScreen} options={{ headerShown: false }} />
           <Stack.Screen name="AddExpense" component={AddExpenseScreen} options={{ headerShown: false }} />
           <Stack.Screen name="TripExpense" component={TripExpense} options={{ headerShown: false }} />
+          <Stack.Screen  name="EditExpense" component={EditExpense} options={{ headerShown: false }} />
           <Stack.Screen name="ExpenseSummary" component={ExpenseSummary} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>

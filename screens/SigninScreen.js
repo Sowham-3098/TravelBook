@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from '../components/ScreenWrapper'
 import BackButton from '../components/BackButton'
 const { useNavigation } = require('@react-navigation/native');
 import Snackbar from 'react-native-snackbar';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword,signOut } from 'firebase/auth';
 import { auth } from '../config/firebase';
+import { sendPasswordResetEmail } from 'firebase/auth';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserLoading } from '../redux/slices/user';
 import Loading from '../components/loading';
@@ -23,13 +25,52 @@ export default function SigninScreen() {
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+  
+  const ForgotPassword = async () => {
+    if (email) {
+      try {
+        await sendPasswordResetEmail(auth, email);
+        Snackbar.show({
+          text: 'Password reset email sent',
+          backgroundColor: 'green',
+        });
+      } catch (e) {
+        Snackbar.show({
+          text: e.message,
+          backgroundColor: 'red',
+        });
+      }
+    } else {
+      Snackbar.show({
+        text: 'Please enter your email',
+        backgroundColor: 'red',
+      });
+    }
+  }
   const handleSubmit = async () => {
     if (email && password) {
-      // navigation.navigate('Home');
       try {
         dispatch(setUserLoading(true));
-        await signInWithEmailAndPassword(auth, email, password);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        
+        // Check if email is verified
+        if (!userCredential.user.emailVerified) {
+          await signOut(auth);
+          navigation.navigate('SignIn');
+          dispatch(setUserLoading(false));
+          Snackbar.show({
+            text: 'Please verify your email before logging in',
+            backgroundColor: 'red',
+          });
+
+          return; // Exit the function if email is not verified
+        }else{
+          navigation.navigate('Home');
+        }
+        
+        // Proceed with logging in
         dispatch(setUserLoading(false));
+        
       } catch (e) {
         dispatch(setUserLoading(false));
         Snackbar.show({
@@ -37,14 +78,13 @@ export default function SigninScreen() {
           backgroundColor: 'red',
         });
       }
-
     } else {
       Snackbar.show({
         text: 'Please fill in all the fields',
         backgroundColor: 'red',
       });
     }
-  }
+  };
   return (
     <KeyboardAwareScrollView>
       <View style={{height: height}} className="flex justify-between">
@@ -72,7 +112,7 @@ export default function SigninScreen() {
               <View className="flex-row justify-center items-center"><TextInput style={{ width: width - 110, marginLeft: 20 }} placeholder='Enter password'  placeholderTextColor={"gray"} value={password} secureTextEntry={!showPassword} onChangeText={value => setPassword(value)} className="border border-gray-400 rounded-2xl p-2 px-5 text-xl bg-white text-slate-800" />
                 <TouchableOpacity className="mx-4 bg-white rounded-xl p-2" onPress={toggleShowPassword}>{showPassword ? <EyeSlashIcon size="30" color="black" /> : <EyeIcon size="30" color="black" />}</TouchableOpacity></View>
 
-              <TouchableOpacity className="flex-row justify-end ">
+              <TouchableOpacity className="flex-row justify-end " onPress={()=> {ForgotPassword()}}>
                 <Text className="text-white  text-sm font-bold text-right">Forgot Password?</Text>
               </TouchableOpacity>
             </View>

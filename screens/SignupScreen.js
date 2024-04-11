@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from '../components/ScreenWrapper'
 import BackButton from '../components/BackButton'
 const { useNavigation } = require('@react-navigation/native');
 import Snackbar from 'react-native-snackbar';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword,sendEmailVerification,signOut } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserLoading } from '../redux/slices/user';
@@ -26,15 +26,29 @@ export default function SignupScreen() {
   const dispatch = useDispatch();
   const handleSubmit = async () => {
     if (email && password) {
-      // navigation.navigate('Home');
       try {
         dispatch(setUserLoading(true));
-        await createUserWithEmailAndPassword(auth, email, password);
-        Snackbar.show({
-          text: 'User created successfully',
-          backgroundColor: 'green',
-        });
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        
+        await sendEmailVerification(userCredential.user);
+        await signOut(auth);
+        navigation.navigate('SignIn')
+        Alert.alert(
+          'Email verification',
+          'A verification email has been sent to your email address. Please verify your email to continue',
+          [
+            {
+              text: 'OK',
+            },
+          ],
+        );
+        
+        
+        
+        
         dispatch(setUserLoading(false));
+        
+       
       } catch (e) {
         dispatch(setUserLoading(false));
         Snackbar.show({
@@ -42,14 +56,13 @@ export default function SignupScreen() {
           backgroundColor: 'red',
         });
       }
-
     } else {
       Snackbar.show({
         text: 'Please fill in all the fields',
         backgroundColor: 'red',
       });
     }
-  }
+  };
   return (
     <KeyboardAwareScrollView>
       <View style={{ height: height }} className="flex justify-between">
@@ -58,7 +71,7 @@ export default function SignupScreen() {
             <View className=" top-0 left-0" >
               <BackButton />
             </View>
-            <Text className="text-white text-2xl font-bold text-center mr-5">Sign Up</Text>
+            <Text className="text-white text-2xl font-bold text-center mr-5">Craete Account</Text>
             <View>
 
             </View>
