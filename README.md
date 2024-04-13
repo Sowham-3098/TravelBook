@@ -1,6 +1,16 @@
-# TravelBook
+# TravelBook ( Download and Use From Indus App Store )
 
 TravelBook is a React Native mobile application designed to simplify trip expense tracking. With Firebase integration for authentication and database management, users can efficiently manage their travel expenses, organize trips, and monitor budgets.
+
+
+
+<img width="1440" alt="Your paragraph text" src="https://github.com/Sowham-3098/TravelBook/assets/95470604/88f5de89-853a-45b0-b71a-dac8cd1124c8">
+
+## Latest Feature Updates in Version 1.4
+
+- **Email Verification and Forgot Password**: Users are now required to verify their email addresses through a verification link sent to their email inbox. Additionally, a forgot password functionality has been implemented, allowing users to reset their passwords securely.
+- **Update and delete trips and expenses**:  Users now delete trips from their trip list and update or delete individual expenses within their expense list. This feature enhances user control and flexibility over their travel information.
+- **Add Category**: A new feature has been introduced allowing users to add custom categories for expenses. This feature enables users to categorize their expenses more accurately, catering to their specific needs and preferences.
 
 ## Features
 
@@ -10,6 +20,7 @@ TravelBook is a React Native mobile application designed to simplify trip expens
 - **Budget Alerts**: You can see if your expense in one trip exceeds your budget in app interface
 - **Expense Summary**: Users can view a comprehensive summary of all expenses for each trip, including total expenditure, the number of expenses, and category-wise spending.
 - **Persistent Storage**: All trip and expense data is securely stored in the Firebase database, allowing users to access their information anytime, anywhere.
+
 
 ## Tech Stack
 
