@@ -11,6 +11,7 @@ import { setUserLoading } from '../redux/slices/user';
 import Loading from '../components/loading';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { EyeIcon, EyeSlashIcon } from 'react-native-heroicons/outline';
+import { StatusBar } from 'react-native';
 
 import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
@@ -71,30 +72,30 @@ export default function SignupScreen() {
             <View className=" top-0 left-0" >
               <BackButton />
             </View>
-            <Text className="text-white text-2xl font-bold text-center mr-5">Craete Account</Text>
+            <Text className="text-white text-2xl font-bold text-center mr-5">Create Account</Text>
             <View>
 
             </View>
           </View>
-          <View style={{height:height*0.35}} className="flex-row justify-center" >
+          <View style={{height:height*0.30}} className="flex-row justify-center" >
             <Image source={require('../assets/images/signup.png')} className="w-60 h-60" />
           </View>
-          <View style={{ height: height * 0.60 }} className="bg-green-900  rounded-tl-[50]">
-            <View className="space-y-1 mx-6 mt-6">
-              <Text className="text-white   text-xl font-bold" >Name</Text>
-              <TextInput placeholder='Enter name' placeholderTextColor={"gray"} className="border border-gray-400 rounded-2xl p-2 px-5 bg-white text-slate-800 text-xl" />
-              <Text className="text-white   text-xl font-bold" >Email</Text>
-              <TextInput value={email} placeholder='Enter email' placeholderTextColor={"gray"} onChangeText={value => setEmail(value)} className="border border-gray-400 rounded-2xl p-2 px-5 bg-white text-slate-800 text-xl" />
-              <Text className="text-white   text-xl font-bold"> Password </Text>
-              <View className="flex-row justify-center items-center"><TextInput style={{ width: width - 110, marginLeft: 20 }} placeholder='Enter password' placeholderTextColor={"gray"} value={password} secureTextEntry={!showPassword} onChangeText={value => setPassword(value)} className="border border-gray-400 rounded-2xl p-2 px-5 bg-white text-slate-800 text-xl" />
-                <TouchableOpacity className="mx-4 bg-white rounded-xl p-2" onPress={toggleShowPassword}>{showPassword ? <EyeSlashIcon size="30" color="black" /> : <EyeIcon size="30" color="black" />}</TouchableOpacity>
+          <View style={{ height: height * 0.70 }} className="bg-green-900  rounded-tl-[50]">
+            <View className="space-y-2 mx-6 mt-6">
+              <Text className="text-white   text-xl  ml-2 font-bold" >Name</Text>
+              <TextInput placeholder='Enter name' placeholderTextColor={"gray"} className="border border-gray-400 rounded-3xl p-2 px-5 bg-white text-slate-800 text-xl" />
+              <Text className="text-white   text-xl ml-2 font-bold" >Email</Text>
+              <TextInput value={email} placeholder='Enter email' placeholderTextColor={"gray"} onChangeText={value => setEmail(value)} className="border border-gray-400 rounded-3xl p-2 px-5 bg-white text-slate-800 text-xl" />
+              <Text className="text-white   text-xl ml-2 font-bold"> Password </Text>
+              <View className="flex-row justify-center items-center bg-white rounded-3xl"><TextInput style={{ width: width - 110, marginLeft: 20 }} placeholder='Enter password' placeholderTextColor={"gray"} value={password} secureTextEntry={!showPassword} onChangeText={value => setPassword(value)} className=" rounded-3xl p-2 px-5  text-slate-800 text-xl" />
+                <TouchableOpacity className="mx-4 mr-6 p-2" onPress={toggleShowPassword}>{showPassword ? <EyeSlashIcon size="30" color="black" /> : <EyeIcon size="30" color="black" />}</TouchableOpacity>
               </View>
 
               <View>
                 {
                   userLoading ? (
                     <Loading />
-                  ) : (<TouchableOpacity onPress={handleSubmit} className="bg-green-300 shadow-sm  mt-5  p-4 rounded-full ">
+                  ) : (<TouchableOpacity onPress={handleSubmit} className="bg-lime-300 shadow-sm  mt-5  p-4 rounded-full ">
                     <Text className="text-slate-800 font-bold text-center text-xl">Sign Up</Text>
                   </TouchableOpacity>)
                 }

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert, StatusBar } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from '../components/ScreenWrapper'
 import BackButton from '../components/BackButton'
@@ -87,6 +87,7 @@ export default function SigninScreen() {
   };
   return (
     <KeyboardAwareScrollView>
+      <StatusBar barStyle="light-content" backgroundColor="#14532d" />
       <View style={{height: height}} className="flex justify-between">
        
           <View style={{height:height*0.13}} className="flex-3 flex-row items-center justify-between py-6 px-5 bg-green-900 rounded-br-[50]">
@@ -106,11 +107,11 @@ export default function SigninScreen() {
           </View>
           <View style={{ height: height*0.60}} className="bg-green-800 rounded-tl-[40]">
             <View className="space-y-2 mx-6 mt-7">
-              <Text className="text-white   text-xl font-bold" >Email</Text>
-              <TextInput value={email} placeholder='Enter email' placeholderTextColor={"gray"} onChangeText={value => setEmail(value)} className="border border-green-600 rounded-2xl p-2 px-5 bg-white text-slate-800 text-xl" />
-              <Text className="text-white   text-xl font-bold"> Password </Text>
-              <View className="flex-row justify-center items-center"><TextInput style={{ width: width - 110, marginLeft: 20 }} placeholder='Enter password'  placeholderTextColor={"gray"} value={password} secureTextEntry={!showPassword} onChangeText={value => setPassword(value)} className="border border-gray-400 rounded-2xl p-2 px-5 text-xl bg-white text-slate-800" />
-                <TouchableOpacity className="mx-4 bg-white rounded-xl p-2" onPress={toggleShowPassword}>{showPassword ? <EyeSlashIcon size="30" color="black" /> : <EyeIcon size="30" color="black" />}</TouchableOpacity></View>
+              <Text className="text-white  ml-2 text-xl font-bold" >Email</Text>
+              <TextInput value={email} placeholder='Enter email' placeholderTextColor={"gray"} onChangeText={value => setEmail(value)} className="border border-green-600 rounded-3xl p-2 px-5 bg-white text-slate-800 text-xl" />
+              <Text className="text-white  ml-2 text-xl font-bold"> Password </Text>
+              <View className="flex-row justify-center items-center bg-white rounded-3xl"><TextInput style={{ width: width - 110, marginLeft: 20 }} placeholder='Enter password'  placeholderTextColor={"gray"} value={password} secureTextEntry={!showPassword} onChangeText={value => setPassword(value)} className=" rounded-3xl p-2 px-5 text-xl text-slate-800" />
+                <TouchableOpacity className="mx-4 mr-6 rounded-2xl p-2" onPress={toggleShowPassword}>{showPassword ? <EyeSlashIcon size="30" color="black" /> : <EyeIcon size="30" color="black" />}</TouchableOpacity></View>
 
               <TouchableOpacity className="flex-row justify-end " onPress={()=> {ForgotPassword()}}>
                 <Text className="text-white  text-sm font-bold text-right">Forgot Password?</Text>
@@ -120,7 +121,7 @@ export default function SigninScreen() {
               {
                 userLoading ? (
                   < Loading />
-                ) : (<TouchableOpacity onPress={handleSubmit} className="bg-green-400 shadow-sm  p-4 rounded-full mx-6 my-5">
+                ) : (<TouchableOpacity onPress={handleSubmit} className="bg-lime-300 shadow-sm  p-4 rounded-full mx-6 my-5">
                   <Text className="text-slate-900 text-center font-bold text-2xl">Sign In</Text>
                 </TouchableOpacity>)
               }

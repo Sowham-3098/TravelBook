@@ -18,6 +18,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { Dimensions } from 'react-native'
 import { TrashIcon } from 'react-native-heroicons/outline'
+import { StatusBar } from 'react-native'
 import app from '../config/firebase.js'
 
 
@@ -186,7 +187,7 @@ export default function TripExpense(props) {
                 </View>
 
                 <View className="flex-row justify-center align-center bg-white-200 mx-2   rounded-xl ">
-                    <Image source={require('../assets/images/5.png')} className="w-40 h-40 " />
+                    <Image source={require('../assets/images/bill.png')} className="w-40 h-40 " />
                 </View>
                 <View className="px-4 space-y-3 ">
                     <View className="flex-row justify-between items-center">
@@ -249,7 +250,7 @@ export default function TripExpense(props) {
                 </View>
 
                 <View style={{ height: height * 0.20 }} className="flex-row justify-center align-center bg-white-200 mx-2   rounded-xl ">
-                    <Image source={require('../assets/images/5.png')} className="w-40 h-40 " />
+                    <Image source={require('../assets/images/bill.png')} className="w-40 h-40 " />
                 </View>
                 <View style={{ height: height * 0.1 }} className="px-4 space-y-3 ">
                     <View className="flex-row justify-between items-center">
@@ -313,15 +314,15 @@ export default function TripExpense(props) {
                         <Text className="text-black font-bold text-lg">₹ {totalExpenses}</Text>
                     </View>
                     <View className="flex-row justify-center ">
-                        <Text className="text-white font-bold text-lg mt-2">Budget exceeded</Text>
-                        <Text className="text-red-600 bg-white rounded-full px-2 font-bold text-lg ml-2 mt-2">₹{totalExpenses - budget}</Text>
+                        <Text className="text-white font-bold text-lg my-4">Budget exceeded</Text>
+                        <Text className="text-red-600 bg-white rounded-full px-2 font-bold text-lg ml-2 my-4">₹{totalExpenses - budget}</Text>
 
                     </View>
 
                 </View>
 
-                <View style={{ height: height / 4 }} className="flex-row justify-center align-center bg-white-200 mx-2   rounded-xl ">
-                    <Image source={require('../assets/images/5.png')} className="w-40 h-40 " />
+                <View style={{ height: height / 5 }} className="flex-row justify-center align-center bg-white-200 mx-2   rounded-xl ">
+                    <Image source={require('../assets/images/bill.png')} className="w-40 h-40 " />
                 </View>
                 <View style={{ height: height * 0.50 }} className="px-4 space-y-3 ">
                     <View className="flex-row justify-between items-center">
@@ -330,7 +331,7 @@ export default function TripExpense(props) {
                             <Text className="text-white"> Add Expense</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={{ height: height * 0.28 }}>
+                    <View style={{ height: height * 0.30 }}>
                         <FlatList
                             data={expenses}
 

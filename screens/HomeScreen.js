@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList, ScrollView, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList, ScrollView, TextInput, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Screen } from 'react-native-screens'
 import ScreenWrapper from '../components/ScreenWrapper'
@@ -79,6 +79,7 @@ export default function HomeScreen() {
     }, [isFocused])
     return (
         <SafeAreaView style={{ height: height }} className="flex-1">
+            <StatusBar barStyle="light-content" backgroundColor={"#14532d"} />
             <View className="flex-row justify-between items-center px-4 py-4  bg-green-900">
                 <Text className="text-white font-bold text-3xl shadow-sm">Travel Book</Text>
                 <TouchableOpacity onPress={handleLogout} className="p-2 px-3 bg-white border-green-100 rounded-full">

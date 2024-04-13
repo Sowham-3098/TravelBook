@@ -19,6 +19,7 @@ import PlusIcon from 'react-native-heroicons/solid/PlusIcon';
 import { Dimensions } from 'react-native'
 import { Modal } from 'react-native'  
 import {Picker} from '@react-native-picker/picker';
+import { StatusBar } from 'react-native'
 
 const { width, height } = Dimensions.get('window');
 
@@ -127,6 +128,7 @@ let {id} =props.route.params || {};
 
   return (
     <ScrollView>
+      <StatusBar barStyle="light-content" backgroundColor={"#14532d"} />
       <View className="flex justify-between h-full ">
         <View>
         <View style={{height:height*0.13}} className="flex-3 flex-row items-center justify-between py-6 px-5 bg-green-900 rounded-br-[50]">
@@ -187,7 +189,7 @@ let {id} =props.route.params || {};
             loading ? (
               <Loading />
             ) : (<TouchableOpacity onPress={handleAddTrip} className="bg-green-800 shadow-sm mx-6 p-2 rounded-full my-5">
-              <Text className="text-white text-center text-lg">Add Expense</Text>
+              <Text className="text-white text-center text-lg my-2">Add Expense</Text>
             </TouchableOpacity>)
           }
 

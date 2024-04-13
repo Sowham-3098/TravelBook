@@ -17,6 +17,7 @@ import LottieView from 'lottie-react-native'
 import { Dimensions } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { StatusBar } from 'react-native'
 const { width, height } = Dimensions.get('window');
 
 
@@ -67,6 +68,7 @@ export default function ExpenseSummary(props) {
 
     return (
         <ScreenWrapper style={{ height: height }} className="flex-1">
+            <StatusBar barStyle="light-content" backgroundColor={"#14532d"} />
             <View style={{ height: height * 0.17 }} className="flex px-4 bg-green-900 py-3 rounded-b-[15]">
                 <View className="flex-3 flex-row items-center justify-between  ">
                     <View className="relative top-0 left-0 mx-2" >

@@ -8,6 +8,7 @@ import Loading from '../components/loading.js'
 import { expensesRef } from '../config/firebase.js'
 import BackButton from '../components/BackButton'
 import { Dimensions } from 'react-native'
+import { StatusBar } from 'react-native'
 
 const { width, height } = Dimensions.get('window');
    
@@ -83,6 +84,7 @@ export default function EditExpense(props) {
 
     return (
         <ScrollView>
+            <StatusBar barStyle="light-content" backgroundColor={"#14532d"} />
             <View className="flex justify-between h-full ">
                 <View>
                     <View style={{height:height*0.13}} className="flex-3 flex-row items-center justify-between py-6 px-5 bg-green-900 rounded-br-[50]">
@@ -127,7 +129,7 @@ export default function EditExpense(props) {
                         loading ? (
                             <Loading />
                         ) : (<TouchableOpacity onPress={handleUpdateExpense} className="bg-green-800 shadow-sm mx-6 p-2 rounded-full my-5">
-                            <Text className="text-white text-center text-lg">Update Expense</Text>
+                            <Text className="text-white text-center py-1 text-lg">Update Expense</Text>
                         </TouchableOpacity>)
                     }
                 </View>

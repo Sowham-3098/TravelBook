@@ -12,6 +12,7 @@ import { addDoc } from 'firebase/firestore'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window');
+import { StatusBar } from 'react-native'
 export default function AddTripScreen() {
 
   const [place, setPlace] =useState('');
@@ -59,11 +60,11 @@ const navigation = useNavigation();
             <Image source={require('../assets/images/4.png')} className="w-60 h-60 " />
           </View>
           <View className="space-y-3 mx-6">
-            <Text className="text-green-900   text-xl font-bold" >Where on Earth? *</Text>
+            <Text className="text-green-900 ml-2  text-xl font-bold" >Where on Earth? *</Text>
             <TextInput value={place} onChangeText={value=>setPlace(value)} placeholder="Enter the place" placeholderTextColor={"gray"} className="border border-green-900 rounded-full p-2 px-5 text-lg bg-white text-slate-800  " />
-            <Text className="text-green-900   text-xl font-bold"> Which Country? * </Text>
+            <Text className="text-green-900 ml-2  text-xl font-bold"> Which Country? * </Text>
             <TextInput value={country} onChangeText={value=>setCountry(value)} placeholder="Enter the country" placeholderTextColor={"gray"} className="border border-green-900 rounded-full p-2 px-5 text-lg bg-white text-slate-800" />
-            <Text className="text-green-900   text-xl font-bold" >Estimated Budget </Text>
+            <Text className="text-green-900  ml-2 text-xl font-bold" >Estimated Budget </Text>
             <TextInput value={budget} onChangeText={value=>setBudget(value)} placeholder="Enter amount in INR" placeholderTextColor={"gray"} className="border border-green-900 rounded-full p-2 px-5 text-lg bg-white text-slate-800" />
           </View>
         </View>
@@ -74,8 +75,8 @@ const navigation = useNavigation();
               loading?(
                 <Loading />
               ):(
-                <TouchableOpacity onPress={handleAddTrip} className="bg-green-800 shadow-sm mx-6 p-2 rounded-full my-5">
-                <Text className="text-white text-center text-lg">Add Trip</Text>
+                <TouchableOpacity onPress={handleAddTrip}  className="bg-green-800 shadow-sm mx-6 p-2 rounded-full my-5">
+                <Text className="text-white text-center font-bold text-lg my-2">Add Trip</Text>
             </TouchableOpacity>
               )
           }
