@@ -107,7 +107,7 @@ export default function HomeScreen() {
                         data={trips}
                         numColumns={3}
                         keyExtractor={item => item.id}
-                        ListEmptyComponent={<EmptyList message={"You have not recorded any trips yet"} />}
+                        ListEmptyComponent={<EmptyList/>}
                         showsVerticalScrollIndicator={true}
                         columnWrapperStyle={{ justifyContent: 'space-between' }}
                         style={{ marginHorizontal: width * 0.01, marginTop: height * 0.03 }}

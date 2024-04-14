@@ -74,7 +74,7 @@ export default function SigninScreen() {
       } catch (e) {
         dispatch(setUserLoading(false));
         Snackbar.show({
-          text: e.message,
+          text: 'Incorrect password or email',
           backgroundColor: 'red',
         });
       }
