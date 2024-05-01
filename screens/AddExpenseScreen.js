@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView , Button ,Alert} from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Button, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { Screen } from 'react-native-screens'
 import ScreenWrapper from '../components/ScreenWrapper'
@@ -17,23 +17,23 @@ import props from 'prop-types';
 import { PropsWithChildren } from 'react'
 import PlusIcon from 'react-native-heroicons/solid/PlusIcon';
 import { Dimensions } from 'react-native'
-import { Modal } from 'react-native'  
-import {Picker} from '@react-native-picker/picker';
+import { Modal } from 'react-native'
+import { Picker } from '@react-native-picker/picker';
 import { StatusBar } from 'react-native'
 
 const { width, height } = Dimensions.get('window');
 
 
 export default function AddExpenseScreen(props) {
-let {id} =props.route.params || {};
+  let { id } = props.route.params || {};
 
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState(null);
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false); 
-  const [newCategoryName, setNewCategoryName] = useState(''); 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [newCategoryName, setNewCategoryName] = useState('');
   const [newCategoryColor, setNewCategoryColor] = useState('');
   const [expenseCategories, setExpenseCategories] = useState(initialCategories);
 
@@ -46,10 +46,10 @@ let {id} =props.route.params || {};
         category,
         amount,
         tripId: id,
-       
+
       });
       setLoading(false);
-      if(doc && doc.id){
+      if (doc && doc.id) {
         navigation.goBack();
       }
     } else {
@@ -61,20 +61,20 @@ let {id} =props.route.params || {};
   }
 
   const handleAddCategory = () => {
-  
+
     if (newCategoryName) {
-     
+
       const categoryExists = initialCategories.some(
         (cat) => cat.title.toLowerCase() === newCategoryName.toLowerCase()
       );
-      
+
       if (!categoryExists) {
         // Add the new category to the categories constant
         initialCategories.push({
           title: newCategoryName,
           value: newCategoryName,
         });
-        
+
 
         setModalVisible(false); // Close the modal
         setNewCategoryName(''); // Clear the input field
@@ -124,14 +124,14 @@ let {id} =props.route.params || {};
   //     { cancelable: false }
   //   );
   // };
- 
+
 
   return (
     <ScrollView>
       <StatusBar barStyle="light-content" backgroundColor={"#14532d"} />
       <View className="flex justify-between h-full ">
         <View>
-        <View style={{height:height*0.13}} className="flex-3 flex-row items-center justify-between py-6 px-5 bg-green-900 rounded-br-[50]">
+          <View style={{ height: height * 0.13 }} className="flex-3 flex-row items-center justify-between py-6 px-5 bg-green-900 rounded-br-[50]">
             <View className=" top-0 left-0" >
               <BackButton />
             </View>
@@ -139,7 +139,7 @@ let {id} =props.route.params || {};
             <View>
 
             </View>
-          
+
           </View>
           <View className="flex-row justify-center mx-4 my-3 mt-3">
             <Image source={require('../assets/images/expenseBanner.png')} className="w-40 h-40 " />
@@ -153,16 +153,16 @@ let {id} =props.route.params || {};
           </View>
           <View className="mx-6 space-y-2 mt-3">
             <View className="flex-row justify-between items-center">
-            <Text className="text-green-900   text-xl font-bold"> Category </Text>
-            <TouchableOpacity
+              <Text className="text-green-900   text-xl font-bold"> Category </Text>
+              <TouchableOpacity
                 onPress={() => setModalVisible(true)}
                 className="bg-green-800 p-1 rounded-full"
               >
                 <PlusIcon color="white" size={20} />
               </TouchableOpacity>
             </View>
-           
-            <View style={{maxHeight: height*0.3}} className="flex-row flex-wrap items-center gap-2   ">
+
+            <View style={{ maxHeight: height * 0.3 }} className="flex-row flex-wrap items-center gap-2   ">
               {
 
                 categories.map(cat => {
@@ -171,15 +171,15 @@ let {id} =props.route.params || {};
                     bgColor = 'bg-green-200';
                   }
                   return (
-                    <TouchableOpacity   onPress={() => setCategory(cat.value)} key={cat.value} className={`rounded-full ${bgColor} px-4 py-2 mr-2 mb-2`}>
+                    <TouchableOpacity onPress={() => setCategory(cat.value)} key={cat.value} className={`rounded-full ${bgColor} px-4 py-2 mr-2 mb-2`}>
                       <Text className="text-green-950" >{cat.title}</Text>
                     </TouchableOpacity>
-                    
+
                   )
 
                 })
               }
-               
+
 
             </View>
           </View>
@@ -200,24 +200,24 @@ let {id} =props.route.params || {};
         transparent={true}
         animationType="slide"
         onRequestClose={() => setModalVisible(false)}
-        
+
       >
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 50 }}>
           <View
-          className="bg-green-600 rounded-xl"
+            className="bg-green-600 rounded-xl"
             style={{
-              
+
               padding: 20,
               borderRadius: 20,
               width: '80%',
-              
+
             }}
           >
             <TextInput
               placeholder="Enter category name"
               value={newCategoryName}
               onChangeText={(value) => setNewCategoryName(value)}
-              style={{ marginBottom: 10, borderWidth: 1, borderColor: 'white', fontSize:20, borderRadius: 5, padding: 10 , backgroundColor: 'white', color: 'black'}}
+              style={{ marginBottom: 10, borderWidth: 1, borderColor: 'white', fontSize: 20, borderRadius: 5, padding: 10, backgroundColor: 'white', color: 'black' }}
             />
             {/* <Picker
               selectedValue={newCategoryColor}
@@ -232,15 +232,15 @@ let {id} =props.route.params || {};
               <Picker.Item label="Purple" color='purple' value="#a5b4fc" />
             </Picker> */}
             <View className=" flex-row justify-between mx-2">
-            <TouchableOpacity className="bg-green-900 rounded-full py-2 px-2 " onPress={onDismiss}> 
-            <Text className="text-center text-white">Cancel</Text>  
-            </TouchableOpacity> 
-            <TouchableOpacity className="bg-green-900 rounded-full py-2 px-2  " onPress={handleAddCategory}> 
-            <Text className="text-center text-white">Add Category</Text>  
-            </TouchableOpacity> 
-            
+              <TouchableOpacity className="bg-green-900 rounded-full py-2 px-2 " onPress={onDismiss}>
+                <Text className="text-center text-white">Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity className="bg-green-900 rounded-full py-2 px-2  " onPress={handleAddCategory}>
+                <Text className="text-center text-white">Add Category</Text>
+              </TouchableOpacity>
+
             </View>
-           
+
           </View>
         </View>
       </Modal>
